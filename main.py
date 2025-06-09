@@ -1,5 +1,5 @@
 import sys
-from stats import get_char_freq, sort_dict
+from stats import get_num_words, get_char_freq, sort_dict
 
 def get_book_test(file_path: str) -> str:
     with open(file_path) as f:
@@ -16,22 +16,22 @@ def main():
 
     text = get_book_test(corpus_path)
 
-    # num_words = get_num_words(text)
+    num_words = get_num_words(text)
 
     char_dict = get_char_freq(text)
 
     char_dict = sort_dict(char_dict)
-    # print("============ BOOKBOT ============")
-    # print(f"Analyzing book found at {corpus_path}...")
-    # print("----------- Word Count ----------")
-    # print(f"Found {num_words} total words")
-    # print("--------- Character Count -------")
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {corpus_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {num_words} total words")
+    print("--------- Character Count -------")
 
     for char in char_dict:
         count = char_dict[char]
         if char.isalpha():
             print(f"{char}: {count}")
 
-    # print("============= END ===============")
+    print("============= END ===============")
 
 main()
