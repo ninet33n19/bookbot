@@ -1,2 +1,7 @@
-/books
-/__pycache__
+/uploads
+test.py
+/testfiles
+**/__pycache__
+/.venv
+/.ropeproject
+.env
