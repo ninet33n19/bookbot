@@ -6,6 +6,7 @@ from app import db
 from app.models.db import Document
 from app.utils.file_check import allowed_file
 
+
 bp = Blueprint('upload', __name__, url_prefix='/upload')
 
 UPLOAD_FOLDER = 'uploads'
@@ -39,6 +40,7 @@ def upload_file():
         doc.id = file_id
         doc.filename = filename
         doc.path = file_path
+        doc.status = 'PENDING'
 
         print(f"Document created with ID: {doc.id}")
 
@@ -46,6 +48,9 @@ def upload_file():
             db.session.add(doc)
             db.session.commit()
             print(f"Database commit successful for ID: {doc.id}")
+            from app.workers.celery_workers import text_analysis_service
+            text_analysis_service.delay(doc.id)
+            print(f"Text analysis task queued for document ID: {doc.id}")
         except Exception as e:
             print(f"Database error: {str(e)}")
             db.session.rollback()

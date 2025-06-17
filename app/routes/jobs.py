@@ -13,3 +13,4 @@ def job_status(job_id):
         'status': doc.status,
         'result': doc.result
     })
+

@@ -10,7 +10,8 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
 
-    from app.routes import upload
+    from app.routes import upload, jobs
     app.register_blueprint(upload.bp)
+    app.register_blueprint(jobs.bp)
 
     return app

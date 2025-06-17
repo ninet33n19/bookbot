@@ -5,3 +5,4 @@ test.py
 /.venv
 /.ropeproject
 .env
+test.json
